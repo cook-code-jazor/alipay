@@ -1,0 +1,25 @@
+{
+    "name": "jazor/alipay",
+    "type": "library",
+    "description": "alipay for php",
+    "keywords": ["alipay","jazor"],
+    "homepage": "https://github.com/cook-code-jazor/alipay",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "anlige",
+            "email": "zhanghuiguoanlige@126.com",
+            "homepage": "https://github.com/cook-code-jazor/alipay"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "jazor/httpclient" : "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jazor\\AliPay\\": "./src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
