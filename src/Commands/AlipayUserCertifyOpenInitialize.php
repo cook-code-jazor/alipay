@@ -20,7 +20,7 @@ class AlipayUserCertifyOpenInitialize extends AlipayCommand
     /***
      * @var string 多因子证照和人脸认证
      */
-    public static $BIZ_CODE_CERT_PHOTO_FACE = 'CERT_PHOTO_FACE ';
+    public static $BIZ_CODE_CERT_PHOTO_FACE = 'CERT_PHOTO_FACE';
 
     /***
      * @var string 多因子快捷认证
