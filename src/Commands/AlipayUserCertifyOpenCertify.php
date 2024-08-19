@@ -27,8 +27,11 @@ class AlipayUserCertifyOpenCertify extends AlipayCommand
         $this['certify_id'] = $value;
     }
 
-    public function getResponse($url)
+    public function getResponse($response)
     {
-        return $url;
+        if($response instanceof \Jazor\Http\Response){
+            return $response->getLocation();
+        }
+        throw new \Exception('invalid response from alipay');
     }
 }

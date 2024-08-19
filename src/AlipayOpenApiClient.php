@@ -138,10 +138,7 @@ class AlipayOpenApiClient
         $query = http_build_query($systemParams, '', '&', PHP_QUERY_RFC3986);
 
         $response = $this->getResponse($this->api . '?' . $query, $requestParams, $command);
-        if(method_exists($command, 'getResponse')){
-            return $command->getResponse($response);
-        }
-        return $response;
+        return $command->getResponse($response);
     }
 
     /**
@@ -183,8 +180,11 @@ class AlipayOpenApiClient
         $request = $this->createRequest($url, $requestParams);
 
         $httpResponse = $request->getResponse(['sslVerifyPeer' => false, 'sslVerifyHost' => false]);
-        if($httpResponse->getStatusCode() != 200){
-            throw new AlipayClientException(sprintf('response error, status code: %s', $httpResponse->getStatusCode()));
+
+        $statusCode = $httpResponse->getStatusCode();
+        if($statusCode != 200){
+            if($statusCode === 302) return $httpResponse;
+            throw new AlipayClientException(sprintf('response error, status code: %s, message: %s', $statusCode, $httpResponse->getBody()));
         }
         $responseText = $httpResponse->getBody();
         if (!$responseText) {

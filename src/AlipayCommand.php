@@ -15,7 +15,7 @@ class AlipayCommand implements \ArrayAccess
 
     public function getRequestParams(){
         return [
-            'biz_content' => json_encode($this->bizContent, 256)
+            'biz_content' => $this->toJson()
         ];
     }
 
@@ -73,6 +73,10 @@ class AlipayCommand implements \ArrayAccess
             return $name . '_response';
         }
         return $this->responseKey;
+    }
+    public function getResponse($response)
+    {
+        return $response;
     }
     /**
      * @return string
